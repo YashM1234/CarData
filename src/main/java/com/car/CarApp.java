@@ -9,12 +9,12 @@ public class CarApp {
         MergeOperation fileMerger = new DataMerger();
         fileMerger.merger(InMemoryStorage.cars, "src/main/resources/Car");
 
-        WriteOperation jsonWriter = new JsonWriter();
         //Json
-        jsonWriter.write(InMemoryStorage.cars, "src/main/resources/Car/carMerge.json");
+        WriteOperation jsonWriter = new JsonWriter();
+        jsonWriter.write(InMemoryStorage.cars, "src/main/resources/merge/carMerge.json");
 
         //Matrix
         MatrixCollector collector = new TransmissionFuelTypeMatrix();
-        collector.collect(InMemoryStorage.cars, "src/main/resources/Car/transmissionFuelTypeCarDetail.json");
+        collector.collect(InMemoryStorage.cars, "src/main/resources/matrix/transmissionFuelTypeCarDetail.json");
     }
 }
