@@ -13,8 +13,8 @@ public class CarApp {
         WriteOperation jsonWriter = new JsonWriter();
         jsonWriter.write(InMemoryStorage.cars, "src/main/resources/merge/carMerge.json");
 
-        //Matrix
-        MatrixCollector collector = new TransmissionFuelTypeMatrix();
-        collector.collect(InMemoryStorage.cars, "src/main/resources/matrix/transmissionFuelTypeCarDetail.json");
+        //Metrics
+        MetricsCollector collector = new TransmissionFuelTypeMetrics();
+        collector.collect(InMemoryStorage.cars, "src/main/resources/metrics/transmissionFuelTypeCarDetail.json");
     }
 }
