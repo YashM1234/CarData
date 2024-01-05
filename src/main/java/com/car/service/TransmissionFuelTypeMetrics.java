@@ -12,16 +12,17 @@ import java.util.stream.Collectors;
 public class TransmissionFuelTypeMetrics implements MetricsCollector {
     @Override
     public void collect(List<Car> cars, String destination) {
-        Map<String, List<Car>> transmissionType = cars.stream()
+        Map<String, FuelTypeCount> countCar = new HashMap<>();
+
+        Map<String, List<Car>> transmissionGroup = cars.stream()
                 .collect(Collectors.groupingBy(Car::getTransmission));
 
-        Map<String, FuelTypeCount> countCar = new HashMap<>();
-        transmissionType.forEach((transType, records) -> {
-            Map<String, List<Car>> countFuelType = records.stream()
+        transmissionGroup.forEach((transType, records) -> {
+            Map<String, List<Car>> fuelTypeGroup = records.stream()
                     .collect(Collectors.groupingBy(Car::getFuelType));
 
             FuelTypeCount count = FuelTypeCount.builder().total(records.size()).build();
-            countFuelType.entrySet().forEach((entry) -> {
+            fuelTypeGroup.entrySet().forEach((entry) -> {
                 setValue(entry, count);
             });
             countCar.put(transType, count);

@@ -31,12 +31,12 @@ public class JsonWriter implements WriteOperation{
         }
     }
 
-    public static void write(TransmissionCount matrixResult, String destination) {
+    public static void write(TransmissionCount metricsResult, String destination) {
         ObjectMapper objectMapper1 = new ObjectMapper();
         File file = new File(destination);
         String json = null;
         try {
-            json = objectMapper1.writeValueAsString(matrixResult);
+            json = objectMapper1.writeValueAsString(metricsResult);
         } catch (JsonProcessingException ex) {
             throw new RuntimeException("Json not processed!");
         }
